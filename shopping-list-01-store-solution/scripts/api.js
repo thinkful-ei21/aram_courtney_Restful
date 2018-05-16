@@ -1,16 +1,34 @@
 'use strict';
+/* global $ */
 
-const api = (function() {
+const api = (function () {
 
-	const BASE_URL = 'https://thinkful-list-api.herokuapp.com/aram-courtney';
+  const BASE_URL = 'https://thinkful-list-api.herokuapp.com/aram';
 
-	const getItems = function(callback) {
-		callback('api module works!');
-	};
+  const getItems = function (callback) {
+    callback('api module works!');
 
+    $.getJSON(BASE_URL + '/items', callback);
+  };
 
-	return {
-		getItems: getItems
-	};
+  const createItem = function (name, callback) {
+    let newItem = JSON.stringify({
+      name: name,
+    });
+
+    $.ajax({
+      url: BASE_URL + '/items',
+      method: 'POST',
+      contentType: 'application/json',
+      data: newItem,
+      success: callback,
+
+    });
+  };
+
+  return {
+    getItems: getItems,
+    createItem: createItem,
+  };
 
 }());

@@ -26,6 +26,12 @@ $(document).ready(function () {
 api.getItems((items) => {
   items.forEach((item) => store.addItem(item));
   shoppingList.render();
+
+  //Test
+  const item = store.items[0];
+  console.log('current name: ' + item.name);
+  store.findAndUpdate(item.id, { name: 'foobar' });
+  console.log('new name: ' + item.name);
 });
 
 api.getItems((items) => {
@@ -35,3 +41,4 @@ api.getItems((items) => {
     console.log('updated!');
   });
 });
+

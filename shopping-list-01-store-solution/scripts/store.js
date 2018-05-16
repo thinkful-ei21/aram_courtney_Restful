@@ -4,39 +4,53 @@
 
 
 // eslint-disable-next-line no-unused-vars
-const store = (function(){
-  const addItem = function(item) {
+const store = (function () {
+  const addItem = function (item) {
     this.items.push(item);
   };
 
-  const findById = function(id) {
+  const findById = function (id) {
     return this.items.find(item => item.id === id);
   };
 
-  const findAndToggleChecked = function(id) {
-    const item = this.findById(id);
-    item.checked = !item.checked;
-  };
+  // const findAndToggleChecked = function(id) {
+  //   const item = this.findById(id);
+  //   item.checked = !item.checked;
+  // };
 
-  const findAndDelete = function(id) {
+  const findAndDelete = function (id) {
     this.items = this.items.filter(item => item.id !== id);
   };
 
-  const findAndUpdateName = function(id, name) {
-    try {
-      Item.validateName(name);
-      const item = this.findById(id);
-      item.name = name;
-    } catch(e) {
-      console.log('Cannot update name: ' + e.message);
-    }
+  const findAndUpdate = function (id, newData) {
+    const item = this.findById(id);
+    Object.assign(item, newData);
+
   };
 
-  const toggleCheckedFilter = function() {
+
+
+  // {
+  //   "id": "cjh9aebr3000q0k5etkicc0q8",
+  //     "name": "pears",
+  //       "checked": false
+  // }
+
+  // const findAndUpdateName = function(id, name) {
+  //   try {
+  //     Item.validateName(name);
+  //     const item = this.findById(id);
+  //     item.name = name;
+  //   } catch(e) {
+  //     console.log('Cannot update name: ' + e.message);
+  //   }
+  // };
+
+  const toggleCheckedFilter = function () {
     this.hideCheckedItems = !this.hideCheckedItems;
   };
 
-  const setSearchTerm = function(term) {
+  const setSearchTerm = function (term) {
     this.searchTerm = term;
   };
 
@@ -47,11 +61,12 @@ const store = (function(){
 
     addItem,
     findById,
-    findAndToggleChecked,
+    findAndUpdate,
+    //findAndToggleChecked,
     findAndDelete,
-    findAndUpdateName,
+    //findAndUpdateName,
     toggleCheckedFilter,
     setSearchTerm,
   };
-  
+
 }());

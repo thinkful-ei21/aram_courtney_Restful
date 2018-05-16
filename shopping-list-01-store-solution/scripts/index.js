@@ -7,7 +7,7 @@ $(document).ready(function () {
   shoppingList.render();
 });
 
-store.items.push(Item.create('apples'));
+// store.items.push(Item.create('apples'));
 
 
 // api.getItems(function (data) {
@@ -22,4 +22,9 @@ store.items.push(Item.create('apples'));
 //     console.log(items);
 //   });
 // });
+
+api.getItems((items) => {
+  items.forEach((item) => store.addItem(item));
+  shoppingList.render();
+});
 

@@ -25,9 +25,18 @@ const api = (function () {
     });
   };
 
+  const updateItem = function(id, updateData, callback) {
+
+    $.ajax({
+
+
+    });
+  };
+
   return {
     getItems: getItems,
     createItem: createItem,
+    updateItem: updateItem
   };
 
 }());
